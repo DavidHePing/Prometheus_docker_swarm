@@ -18,23 +18,17 @@ if [ -z "$2" ]; then
     exit
 fi
 
-ImageName="$DockerHubUrl/${ProjectName}:${Tag}"
-# Ip=$(hostname -I | awk '{print $1}')
-Ip=192.168.50.88
+PrometheusImageName="$DockerHubUrl/prometheus_test:${Tag}"
+GrafanaImageName="$DockerHubUrl/grafana_test:${Tag}"
 
 # execute as a subcommand in order to avoid the variables remain set
 (
 	export ProjectName=$ProjectName
-	export ImageName=$ImageName
-	export Ip=$Ip
+	export PrometheusImageName=$PrometheusImageName
+	export GrafanaImageName=$GrafanaImageName
 		
-	docker image pull "$ImageName"	
-
-	# creat external network
-	# findnw=$(docker network ls | grep myNetWork |wc -l)
-	# if [[ $findnw < 1 ]]; then	
-	# 	docker network create -d overlay --attachable "myNetWork"
-	# fi	
+	docker image pull "$PrometheusImageName"
+	docker image pull "$GrafanaImageName"	
 	
 	docker stack deploy -c docker-compose.yml $StackNname
 )

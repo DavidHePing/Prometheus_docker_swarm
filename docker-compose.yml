@@ -1,18 +1,19 @@
 version: '3.7'
 
+networks:
+  default:
+    name: "$ProjectName_stack_network"
+    attachable: true
+
 services:
   prometheus:
-    container_name: prometheus
-    image: prom/prometheus:v2.1.0
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml   
+    image: "$PrometheusImageName"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - '9090:9090'
   grafana:
-    container_name: grafana
-    image: grafana/grafana:8.1.2
+    image: "$GrafanaImageName"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=123456
     depends_on:
