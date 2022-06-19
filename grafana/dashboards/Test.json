@@ -22,49 +22,16 @@
     ]
   },
   "editable": true,
-  "fiscalYearStartMonth": 0,
+  "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "aiwYNQj7k"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "mode": "thresholds"
           },
           "mappings": [],
           "thresholds": {
@@ -84,41 +51,40 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 0,
         "y": 0
       },
       "id": 2,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
       },
+      "pluginVersion": "8.1.2",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "aiwYNQj7k"
-          },
-          "editorMode": "code",
-          "expr": "process_start_time_seconds",
-          "legendFormat": "__auto",
-          "range": true,
+          "exemplar": true,
+          "expr": "rate(process_cpu_seconds_total{job=\"prometheus\"}[5m])",
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
           "refId": "A"
         }
       ],
       "title": "Panel Title",
-      "type": "timeseries"
+      "type": "gauge"
     }
   ],
-  "schemaVersion": 36,
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -132,6 +98,5 @@
   "timezone": "",
   "title": "Test",
   "uid": "tkqvOwj7z",
-  "version": 1,
-  "weekStart": ""
+  "version": 1
 }
