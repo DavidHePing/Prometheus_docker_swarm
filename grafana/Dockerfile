@@ -1,2 +1,3 @@
 FROM grafana/grafana
-COPY dashboard /var/lib/grafana/dashboards
+COPY dashboards /var/lib/grafana/dashboards
+COPY /config.ini /etc/grafana/config.ini
