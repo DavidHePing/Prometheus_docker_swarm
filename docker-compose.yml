@@ -12,6 +12,11 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - '9090:9090'
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==$ManagerNodeName
+
   grafana:
     image: "$GrafanaImageName"
     environment:
@@ -20,3 +25,7 @@ services:
       - prometheus
     ports:
       - '3000:3000'
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==$ManagerNodeName

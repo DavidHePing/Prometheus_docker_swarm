@@ -20,12 +20,14 @@ fi
 
 PrometheusImageName="$DockerHubUrl/prometheus_test:${Tag}"
 GrafanaImageName="$DockerHubUrl/grafana_test:${Tag}"
+ManagerNodeName="Wsl-Ubuntu"
 
 # execute as a subcommand in order to avoid the variables remain set
 (
 	export ProjectName=$ProjectName
 	export PrometheusImageName=$PrometheusImageName
 	export GrafanaImageName=$GrafanaImageName
+	export ManagerNodeName=$ManagerNodeName
 		
 	docker image pull "$PrometheusImageName"
 	docker image pull "$GrafanaImageName"	
