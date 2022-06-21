@@ -1,2 +1,3 @@
-FROM prom/prometheus
-COPY prometheus.yml /etc/prometheus/prometheus.yml
+FROM prom/prometheus:latest
+ADD ./prometheus.yml /etc/prometheus/prometheus.yml
+CMD [ "--prometheus.file=/etc/prometheus/prometheus.yml" ] 
