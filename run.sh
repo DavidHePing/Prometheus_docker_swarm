@@ -20,7 +20,7 @@ fi
 
 PrometheusImageName="$DockerHubUrl/prometheus_test:${Tag}"
 GrafanaImageName="$DockerHubUrl/grafana_test:${Tag}"
-ManagerNodeName="Wsl-Ubuntu"
+ManagerNodeName="LAPTOP-RJCSV869"
 
 # execute as a subcommand in order to avoid the variables remain set
 (
