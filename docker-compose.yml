@@ -23,7 +23,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname==$ManagerNodeName
+          - node.role == manager
 
   grafana:
     image: "$GrafanaImageName"
@@ -36,4 +36,4 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname==$ManagerNodeName
+          - node.role == manager
