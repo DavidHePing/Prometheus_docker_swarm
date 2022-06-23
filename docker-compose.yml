@@ -8,8 +8,6 @@ networks:
 services:
   prometheus:
     image: "$PrometheusImageName"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.retention.time=180d'
