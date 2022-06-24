@@ -25,11 +25,14 @@ services:
         constraints:
           - node.role == manager
   grafana:
-    container_name: grafana
-    image: grafana/grafana:8.1.2
+    image: "$GrafanaImageName"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=123456
     depends_on:
       - prometheus
     ports:
       - '3000:3000'
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
