@@ -32,11 +32,11 @@ ManagerNodeName="LAPTOP-RJCSV869"
 	docker image pull "$PrometheusImageName"
 	docker image pull "$GrafanaImageName"	
 
-	# find=$(docker stack ls | grep $StackNname |wc -l)
-	# if [[ $find < 1 ]]; then
+	find=$(docker stack ls | grep $StackNname |wc -l)
+	if [[ $find < 1 ]]; then
 		docker stack deploy -c docker-compose.yml $StackNname
-	# else
-	# 	docker service update --image "$PrometheusImageName" --force "${StackNname}_prometheus"
-	# 	docker service update --image "$GrafanaImageName" --force "${StackNname}_grafana"
-	# fi
+	else
+		docker service update --image "$PrometheusImageName" --force "${StackNname}_prometheus"
+		docker service update --image "$GrafanaImageName" --force "${StackNname}_grafana"
+	fi
 )
