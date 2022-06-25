@@ -32,7 +32,13 @@ scrape_configs:
       - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
         regex: .+
         action: keep
-      # Use the prometheus-job Swarm label as Prometheus job label.
-      - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
-        target_label: job
+       # Use the task labels that are prefixed by `prometheus-`.
+      - regex: __meta_dockerswarm_service_label_prometheus_(.+)
+        action: labelmap
+        replacement: $1
+
+      - source_labels: [__address__]
+        target_label: __address__
+        regex: (.*):(?:9082)
+        replacement: $1:80
 
